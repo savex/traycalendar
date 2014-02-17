@@ -1,0 +1,63 @@
+# Thumbnails created by windows
+Thumbs.db
+
+
+# Custom folder attributes for Mac OS X
+.DS_Store
+
+# Adobe Dreamweaver temporary files
+dwsync.xml
+
+# Temporary files that produces Visual Studio 2010 for .NET projects
+*.obj
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+*.lib
+*.sbr
+DesignTimeResolveAssemblyReferencesInput.cache
+ResolveAssemblyReference.cache
+obj/
+/sources/*/[Bb]in*/
+/sources/*/*/[Bb]in*/
+[Dd]ebug*/
+[Rr]elease*/
+[Tt]est[Rr]esult*
+bin/
+
+# JetBrains ReSharper cache folder
+_ReSharper*/
+
+# JetBrains PyCharm configuration and working files 
+.idea
+*.pyc
+
+# Folder which should be used for temporary working files
+sandbox/
+
+# Output of Continuous Integration process
+build_drop/
+build_output/
+
+# Files that MonoDevelop produces
+test-results/
+*.pidb
+*.userprefs
+
+# Folders for logs
+[Ll]ogs/
+
+# Libre office document temp files
+~.lock*
+Documents/.~lock.Architecture.odg#

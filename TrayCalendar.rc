@@ -1,0 +1,156 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_TRAY1               ICON                    "icon1.ico"
+IDI_TRAY2               ICON                    "ico00001.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDC_TRAYCALENDAR MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "E&xit",                       IDM_EXIT
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About ...",                  IDM_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDC_TRAYCALENDAR ACCELERATORS 
+BEGIN
+    "/",            IDM_ABOUT,              ASCII,  ALT, NOINVERT
+    "?",            IDM_ABOUT,              ASCII,  ALT, NOINVERT
+    VK_LWIN,        IDM_CCMINIMIZE,         VIRTKEY, SHIFT, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 22, 17, 161, 132
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
+CAPTION "About"
+FONT 8, "System", 0, 0, 0x0
+BEGIN
+    LTEXT           "Календарь для Рабочего Стола",IDC_STATIC,10,8,119,8,SS_NOPREFIX
+    LTEXT           "версия 0.8а",IDC_STATIC,18,16,42,8
+    DEFPUSHBUTTON   "OK",IDOK,124,6,30,11,WS_GROUP
+    CONTROL         "Savex (июль, 2006)",IDC_STATIC,"Static",SS_LEFTNOWORDWRAP | SS_NOPREFIX | WS_GROUP,10,24,66,8
+    LTEXT           "<Win> + Z",IDC_STATIC,14,51,39,8,SS_NOPREFIX
+    LTEXT           "<Alt> + ?",IDC_STATIC,14,111,34,8,SS_NOPREFIX
+    LTEXT           "<Win> + W",IDC_STATIC,14,62,36,8,SS_NOPREFIX
+    LTEXT           "-->",IDC_STATIC,52,51,10,8,SS_NOPREFIX
+    LTEXT           "-->",IDC_STATIC,52,111,10,8,SS_NOPREFIX
+    LTEXT           "-->",IDC_STATIC,52,62,10,8,SS_NOPREFIX
+    LTEXT           "Свернуть/Развернуть",IDC_STATIC,67,51,75,8,SS_NOPREFIX
+    LTEXT           "О программе...",IDC_STATIC,67,111,50,8,SS_NOPREFIX
+    LTEXT           "Перезапуск",IDC_STATIC,67,62,75,8,SS_NOPREFIX
+    GROUPBOX        "Горячие клавиши",IDC_STATIC,6,39,148,86
+    LTEXT           "<Win> + Q",IDC_STATIC,14,74,36,8,SS_NOPREFIX
+    LTEXT           "-->",IDC_STATIC,52,74,10,8,SS_NOPREFIX
+    LTEXT           "Выход из программы",IDC_STATIC,67,74,75,8,SS_NOPREFIX
+    LTEXT           "<Pg Up>",IDC_STATIC,14,86,36,8,SS_NOPREFIX
+    LTEXT           "-->",IDC_STATIC,52,86,10,8,SS_NOPREFIX
+    LTEXT           "+1 месяц на экране",IDC_STATIC,67,86,75,8,SS_NOPREFIX
+    LTEXT           "<Pg Dn>",IDC_STATIC,14,98,36,8,SS_NOPREFIX
+    LTEXT           "-->",IDC_STATIC,52,98,10,8,SS_NOPREFIX
+    LTEXT           "-1 месяц на экране",IDC_STATIC,67,98,75,8,SS_NOPREFIX
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_APP_TITLE           "Календарь"
+    IDC_TRAYCALENDAR        "TRAYCALENDAR"
+END
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
