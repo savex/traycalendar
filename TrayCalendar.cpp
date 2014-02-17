@@ -151,7 +151,25 @@ ATOM				MyRegisterClass(HINSTANCE hInstance);
 BOOL				InitInstance(HINSTANCE, int);
 LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
-				
+
+char* GetErrorText(DWORD nErrorCode)
+{
+	char* msg;
+	// Ask Windows to prepare a standard message for a GetLastError() code:
+	FormatMessageA(
+		FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+		NULL,
+		nErrorCode,
+		MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+		(LPSTR)&msg,
+		0,
+		NULL
+		);
+	// Return the message
+	return(msg);
+}
+
+
 //Чистим за собой
 bool CleanUp(HWND hWnd)
 {
@@ -275,6 +293,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 		}
 	} while (!bQuit);
 
+	RegistryUpdate();
 	return (int) msg.wParam;
 }
 
@@ -386,9 +405,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    RedrawWindow(hWnd, NULL, NULL, NULL);
 
    //Регистрируем горячую клавишу
-   RegisterHotKey(hWnd,HK_MINIMIZE,MOD_WIN,0x5A); //<Win>+'Z'
-   RegisterHotKey(hWnd,HK_RESTART,MOD_WIN,0x57); //<Win>+'W'
-   RegisterHotKey(hWnd,HK_QUIT,MOD_WIN,0x51); //<Win>+'Q'
+   BOOL bResult = false;
+   bResult = RegisterHotKey(hWnd, HK_MINIMIZE, MOD_CONTROL | MOD_SHIFT, 0x5A); //<Win>+'Z'
+   bResult = RegisterHotKey(hWnd, HK_RESTART, MOD_CONTROL | MOD_SHIFT, 0x57); //<Win>+'W'
+   bResult = RegisterHotKey(hWnd, HK_QUIT, MOD_CONTROL | MOD_SHIFT, 0x51); //<Win>+'Q'
 
    //Создаем браши и все остальное
    brBg=CreateSolidBrush(BG_COLOR);
@@ -1040,18 +1060,44 @@ bool RegistryTrack()
 	//если есть читаем значение и заносим в переменную программы
 
 	//Проверяем
-	if (RegOpenKeyEx(HKEY_LOCAL_MACHINE,strRegKeyName,0,KEY_QUERY_VALUE|KEY_READ,&hkRegKey)) {
+	if (RegOpenKeyEx(HKEY_CURRENT_USER, strRegKeyName, 0, KEY_QUERY_VALUE | KEY_READ, &hkRegKey)) {
 		//Ключика в реестре нету
 		//Готовим данные для реестра
 		Screen.wMonth=3; //Всего 3 месяца на экране по умолчанию
 		dwData = Screen.wMonth;
 		//Создаем, записываем значение и выходим из функции
-		err_code=RegCreateKeyEx(HKEY_LOCAL_MACHINE,strRegKeyName,0,0,REG_OPTION_NON_VOLATILE,KEY_ALL_ACCESS,NULL,&hkRegKey,&dwDisp);
-		if (err_code) return false;
-		err_code=RegSetValueEx(hkRegKey,strRegSubKeyName,0,REG_DWORD,(const BYTE *)&dwData,sizeof(dwData));
+		err_code=RegCreateKeyEx(
+			HKEY_CURRENT_USER,
+			strRegKeyName,
+			0,
+			0,
+			REG_OPTION_NON_VOLATILE,
+			KEY_ALL_ACCESS | KEY_WRITE,
+			NULL,
+			&hkRegKey,
+			&dwDisp
+		);
+		
+		if (err_code) {
+			char* message = GetErrorText(err_code);
+			return false;
+		}
+		
+		err_code=RegSetValueEx(
+			hkRegKey,
+			strRegSubKeyName,
+			0,
+			REG_DWORD,
+			(const BYTE *)&dwData,
+			sizeof(dwData)
+		);
+		
 		RegCloseKey(hkRegKey);
-		if (err_code) return false;
-		else return true;
+		if (err_code) {
+			return false;
+		}
+		else 
+			return true;
 	}
 	else {
 		//Есть, читаем и заносим
@@ -1078,8 +1124,11 @@ bool RegistryUpdate()
 	//если есть заносим туда последнее значение
 
 	//Проверяем
-	if (RegOpenKeyEx(HKEY_LOCAL_MACHINE,strRegKeyName,0,KEY_QUERY_VALUE|KEY_WRITE,&hkRegKey))
+	err_code = RegOpenKeyEx(HKEY_CURRENT_USER, strRegKeyName, 0, KEY_QUERY_VALUE | KEY_WRITE, &hkRegKey);
+	if (err_code) {
+		char* message = GetErrorText(err_code);
 		return false;
+	}
 	else {
 		//Есть, заносим
 		//Готовим данные для реестра
